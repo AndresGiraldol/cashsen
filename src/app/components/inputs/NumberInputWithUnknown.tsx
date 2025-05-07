@@ -24,18 +24,8 @@ const InputNumberWithUnknown = ({ id, placeholder, isCurrency = false }: InputNu
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const inputValue = e.target.value;
-    if (inputValue === "") {
-      setValue(id, null, { shouldValidate: true });
-    } else {
-      setValue(id, Number(inputValue), { shouldValidate: true });
-    }
-  };
-
   return (
     <div className="flex flex-col gap-3 mt-3">
-      {isCurrency ? (
         <NumericFormat
           id={id}
           allowLeadingZeros={false}
@@ -49,19 +39,8 @@ const InputNumberWithUnknown = ({ id, placeholder, isCurrency = false }: InputNu
           onValueChange={(values) => {
             setValue(id, values.floatValue ?? null, { shouldValidate: true });
           }}
-          prefix="$ "
+          prefix={isCurrency ? "$" : ""}
         />
-      ) : (
-        <input
-          id={id}
-          type="number"
-          value={isUnknown ? "" : value}
-          onChange={handleChange}
-          disabled={isUnknown}
-          placeholder={placeholder}
-          className="w-full px-0 py-2 text-xl font-normal border-0 border-b-2 border-neutral-400 focus:border-black focus:outline-none focus:ring-0 placeholder:text-neutral-300"
-        />
-      )}
 
       <label className="inline-flex items-center gap-2 text-neutral-700">
         <input
