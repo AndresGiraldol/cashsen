@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { generateFinancialAdvicePromt } from "./financeAdvPromt";
 import {GoogleGenAI} from '@google/genai';
 import { RateLimiterMemory, RateLimiterRes } from "rate-limiter-flexible";
-import { logInteraction } from "@/app/utils/logInteraction";
 
 const genAI = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 
@@ -55,7 +54,7 @@ export async function POST(request: Request) {
 
     const text = extractJsonFromResponse(modelResponse.text);
 
-    await logInteraction({
+     console.log({
       input: data,
       modelResponse: modelResponse.text,
       notes: "Generación de plan financiero (vía Gemini)",
