@@ -166,7 +166,7 @@ export default function MultiStepForm() {
             )}
 
             {/* Campo dinámico */}
-            { <currentStep.component form {...currentStep}  />}
+            { <currentStep.component {...currentStep}  />}
 
             {/* Errores */}
             {form.formState.errors[fieldName] && (

@@ -3,7 +3,20 @@ import InputText from "./components/inputs/InputText";
 import InputNumberWithUnknown from "./components/inputs/NumberInputWithUnknown";
 import SelectInput from "./components/inputs/SelectInput";
 
-export const steps = [
+import { ComponentType } from "react";
+
+export type StepConfig = {
+  id: string;
+  label: string;
+  type: string;
+  placeholder?: string;
+  helptext?: string;
+  options?: string[];         
+  isCurrency?: boolean; 
+  component: ComponentType<any>;
+}
+
+export const steps: StepConfig[] = [
   {
     id: "country",
     label: "¿En qué país vives?",
