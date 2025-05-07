@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Next.js (pwa)",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["node_modules/next/dist/bin/next", "dev"],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "skipFiles": ["<node_internals>/**"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
