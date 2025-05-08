@@ -59,11 +59,11 @@ export default function MultiStepForm() {
 
       const formattedData = {
         ...data,
-        financialGoal: 
-          data.financialGoal === 'Otro' && data.customGoal 
-          ? data.customGoal 
-          : data.financialGoal,
-      }
+        financialGoal:
+          data.financialGoal === "Otro" && data.customGoal
+            ? data.customGoal
+            : data.financialGoal,
+      };
 
       const response = await fetch("/api/financeAdv", {
         method: "POST",
@@ -74,7 +74,7 @@ export default function MultiStepForm() {
       if (!response.ok) {
         throw new Error("Error en la respuesta del servidor");
       }
-  
+
       const json = await response.json();
       setResult(json);
       setSubmitted(true);
@@ -93,20 +93,39 @@ export default function MultiStepForm() {
           Bienvenido a Cashsen
         </h1>
         <p className="text-lg text-neutral-600 text-center max-w-xl mx-auto mb-6">
-        Responde unas pocas preguntas y genera un plan simple para entender tu dinero, ahorrar más y sentir control sobre tus finanzas.
+          Responde unas pocas preguntas y recibirás un plan personalizado que
+          analiza tu situación financiera actual y te propone acciones claras
+          para mejorar.
         </p>
         <p className="text-neutral-700 text-base space-y-1 text-left max-w-sm mx-auto mb-8">
-          <span className="font-bold">✅ Entiende tu situación actual </span> <br />
-          <span className="font-bold">🎯 Define un objetivo financiero claro </span> <br />
-          <span className="font-bold">📈 Recibe un plan accionable al instante</span> <br />
+          <span className="font-bold">✅ Entiende tu situación actual </span>{" "}
+          <br />
+          <span className="font-bold">
+            🎯 Define un objetivo financiero claro{" "}
+          </span>{" "}
+          <br />
+          <span className="font-bold">
+            📈 Recibe un plan accionable al instante
+          </span>{" "}
+          <br />
+        </p>
+        <p className="text-sm text-neutral-500 italic mt-3 text-center">
+          🔒 100% anónimo y sin necesidad de registrarte.
+        </p>
+        <p className="text-sm text-neutral-500 text-center italic max-w-md mx-auto mb-6">
+          ✨ Esta es la primera versión de Cashsen: un diagnóstico rápido que te
+          ayuda a entender tu situación financiera y qué hacer para mejorar.
+          <br />
+          🛠️ ¡Estamos construyendo más funciones! Tu opinión es clave para lo
+          que viene.
         </p>
         <div className="flex items-center gap-2 mt-5">
-        <button
-          onClick={() => setStarted(true)}
-          className="px-4 py-3 text-xl font-bold text-white transition-colors bg-black rounded-md shadow outline-none hover:bg-neutral-800 focus:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-300"
-        >
-          Comenzar
-        </button>
+          <button
+            onClick={() => setStarted(true)}
+            className="px-4 py-3 text-xl font-bold text-white transition-colors bg-black rounded-md shadow outline-none hover:bg-neutral-800 focus:bg-neutral-800 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-neutral-300"
+          >
+            Comenzar
+          </button>
         </div>
       </div>
     );
@@ -130,7 +149,10 @@ export default function MultiStepForm() {
       <ErrorMessage
         title="Servicio saturado"
         message="Hemos alcanzado el límite de solicitudes permitidas. Por favor, intenta de nuevo en unos minutos."
-        retry={() => {setStarted(false) ; setError(false);}}
+        retry={() => {
+          setStarted(false);
+          setError(false);
+        }}
       />
     );
   }
@@ -158,15 +180,20 @@ export default function MultiStepForm() {
             </div>
 
             {/* Título y ayuda del paso */}
-            <label htmlFor={currentStep.id} className="text-xl font-medium text-indigo-800">
+            <label
+              htmlFor={currentStep.id}
+              className="text-xl font-medium text-indigo-800"
+            >
               {currentStep.label} <span>*</span>
             </label>
             {currentStep.helptext && (
-              <p className="mt-1 text-lg text-neutral-500">{currentStep.helptext}</p>
+              <p className="mt-1 text-lg text-neutral-500">
+                {currentStep.helptext}
+              </p>
             )}
 
             {/* Campo dinámico */}
-            { <currentStep.component {...currentStep}  />}
+            {<currentStep.component {...currentStep} />}
 
             {/* Errores */}
             {form.formState.errors[fieldName] && (
